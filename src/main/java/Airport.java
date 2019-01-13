@@ -34,4 +34,10 @@ public class Airport {
         String firstChars = airline.substring(0,3).toUpperCase();
         return firstChars + "2886";
     }
+
+    public void sellTicket(Flight flight, Passenger passenger){
+        if(!flight.isFullyBooked()){
+            flight.addPassenger(passenger);
+        }
+    }
 }

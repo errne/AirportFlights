@@ -4,13 +4,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FlightTest {
-    Plane plane1;
-    Flight flight1;
+    private Plane plane1;
+    private  Flight flight1;
+    private Passenger passenger;
 
     @Before
     public void before() {
         plane1 = new Plane("Ryanair", PlaneType.A220);
         flight1 = new Flight(plane1, "K00001", Destination.BOSTON);
+        passenger = new Passenger("Bo");
+
     }
 
     @Test
@@ -31,5 +34,21 @@ public class FlightTest {
     @Test
     public void getAirportCode() {
         assertEquals("BOS", flight1.getAirportCode());
+    }
+
+    @Test
+    public void canAddPassenger(){
+        flight1.addPassenger(passenger);
+        assertEquals(1, flight1.getBookingCount());
+    }
+
+    @Test
+    public void cannootAddPassengerifFull(){
+        flight1.addPassenger(passenger);
+        flight1.addPassenger(passenger);
+        flight1.addPassenger(passenger);
+        flight1.addPassenger(passenger);
+        flight1.addPassenger(passenger);
+        assertEquals(4, flight1.getBookingCount());
     }
 }
